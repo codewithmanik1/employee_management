@@ -11,12 +11,6 @@ import java.util.Optional;
 
 public interface EmployeesRepository extends JpaRepository<Employees, Long> {
 
-    Optional<Employees> findByUserName(String username);
-
-    @Query(value = "call fn_getEmployeeDetailsForUser(:username)", nativeQuery = true)
-    Map<String, Object> getEmployeeDetailsForUser(@Param("username") String username);
-
-    Optional<Employees> findByUserNameAndIsActiveTrue(String username);
 
     @Query(value = "call fn_getEmployeesList(:id, :searchString, :page, :size)", nativeQuery = true)
     List<Map<String, Object>> getEmployeesList(

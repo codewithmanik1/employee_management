@@ -42,10 +42,4 @@ public class Employees extends BaseEntity {
 
     @Column(name = "is_delete")
     private Boolean isDelete = false;
-
-    @Column(name = "user_name", unique = true)
-    private String userName;
-
-    @Column(name = "password")
-    private String password;
 }

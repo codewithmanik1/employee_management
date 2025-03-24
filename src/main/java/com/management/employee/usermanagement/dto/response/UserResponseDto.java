@@ -11,7 +11,5 @@ public class UserResponseDto {
 
     private Long employeeId;
 
-    private String employeeName;
-
     private String token;
 }

@@ -2,6 +2,7 @@ package com.management.employee.security.impl;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.management.employee.employee.entity.Employees;
+import com.management.employee.usermanagement.entity.Users;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,20 +24,17 @@ public class UserDetailsImpl implements UserDetails {
     @JsonIgnore
     private String password;
 
-    private Boolean isActive;
-
     private GrantedAuthority authority;
 
-    public UserDetailsImpl(Long id, String username, String password, Boolean isActive,
+    public UserDetailsImpl(Long id, String username, String password,
                            GrantedAuthority authority) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.authority = authority;
-        this.isActive = isActive;
     }
 
-    public static UserDetailsImpl build(Employees user) {
+    public static UserDetailsImpl build(Users user) {
         String role = "Admin";                    //assume role is Admin now
         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role);
 
@@ -44,7 +42,6 @@ public class UserDetailsImpl implements UserDetails {
                 user.getId(),
                 user.getUserName(),
                 user.getPassword(),
-                user.getIsActive(),
                 grantedAuthority);
     }
 
@@ -78,10 +75,5 @@ public class UserDetailsImpl implements UserDetails {
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return isActive;
     }
 }

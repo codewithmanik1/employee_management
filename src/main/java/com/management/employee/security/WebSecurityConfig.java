@@ -38,30 +38,12 @@ public class WebSecurityConfig {
 
     //This endpoints don’t require authentication.
     public static final List<String> AUTH_WHITELIST = List.of(
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
             "/swagger-ui.html",
-            "/webjars/**",
             "/v3/api-docs/**",
-            "/api/public/**",
-            "/api/public/authenticate",
             "/actuator/*",
             "/swagger-ui/**",
-            "/**/*.png",
-            "/**/*.gif",
-            "/**/*.svg",
-            "/**/*.jpg",
-            "/**/*.jpeg",
-            "/**/*.html",
-            "/**/*.css",
-            "/**/*.js",
-            "/**/*.ttf",
-            "/**/*.pdf",
             "/api/auth/login",
-            "/api/auth/save/**",
-            "/api/devices/save/**");
+            "/api/auth/signUp");
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -88,8 +70,7 @@ public class WebSecurityConfig {
                         .requestMatchers(str).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/auth/save/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/devices/save/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/signup/**").permitAll()
                         //.requestMatchers("/**").permitAll()           // if code is comment don't permit all api without token
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))

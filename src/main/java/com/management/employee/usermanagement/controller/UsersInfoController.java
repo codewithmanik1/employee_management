@@ -1,6 +1,7 @@
 package com.management.employee.usermanagement.controller;
 
 import com.management.employee.usermanagement.dto.request.LoginRequestDto;
+import com.management.employee.usermanagement.dto.request.SignUpRequestDto;
 import com.management.employee.usermanagement.service.UserManagementService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,4 +21,8 @@ public class UsersInfoController {
         return userManagementService.login(loginDto);
     }
 
+    @PostMapping("/signUp")
+    public ResponseEntity<?> signUp(@RequestBody SignUpRequestDto signUpRequestDto){
+        return userManagementService.signUp(signUpRequestDto);
+    }
 }

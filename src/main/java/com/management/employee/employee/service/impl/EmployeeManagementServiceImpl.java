@@ -12,17 +12,14 @@ import com.management.employee.employee.repository.DepartmentsRepository;
 import com.management.employee.employee.repository.EmployeesRepository;
 import com.management.employee.employee.repository.PositionsRepository;
 import com.management.employee.employee.service.EmployeeManagementService;
-import com.management.employee.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -37,11 +34,6 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
     @Autowired
     private EmployeesRepository employeesRepository;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private JwtUtils jwtUtils;
 
 
     @Override
@@ -97,9 +89,7 @@ public class EmployeeManagementServiceImpl implements EmployeeManagementService 
         employees.setSalary(employeesRequestDto.getSalary());
         employees.setDateOfJoining(employeesRequestDto.getDateOfJoining());
 
-        //set Username password
-        employees.setUserName(employeesRequestDto.getUserName());
-        employees.setPassword(passwordEncoder.encode(employeesRequestDto.getPassword()));
+
         employeesRepository.save(employees);
 
         response.responseMethod(HttpStatus.OK.value(), "Employee saved successfully", null, null);

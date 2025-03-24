@@ -28,9 +28,6 @@ public class EmployeesRequestDto {
     private Boolean isActive = true;
 
     private Long createdBy;
+
     private Long lastModifiedBy;
-
-    private String userName;
-
-    private String password;
 }
