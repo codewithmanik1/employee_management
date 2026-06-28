@@ -24,6 +24,7 @@ public class EmployeeManagementController {
 
     @PostMapping("/savePosition")
     public ResponseEntity<?> savePosition(@RequestBody PositionRequestDto positionRequestDto){
+        System.out.println("Save position");
         return employeeManagementService.savePosition(positionRequestDto);
     }
 
