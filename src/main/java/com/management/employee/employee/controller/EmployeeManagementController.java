@@ -30,6 +30,7 @@ public class EmployeeManagementController {
 
     @PostMapping("/registerEmployee")
     public ResponseEntity<?> registerEmployee(@RequestBody EmployeesRequestDto employeesRequestDto){
+        System.out.println("Register employee");
         return employeeManagementService.registerEmployee(employeesRequestDto);
     }
 
