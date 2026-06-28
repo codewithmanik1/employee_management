@@ -18,6 +18,7 @@ public class EmployeeManagementController {
 
     @PostMapping("/saveDepartment")
     public ResponseEntity<?> saveDepartment(@RequestBody DepartmentRequestDto departmentRequestDto){
+        System.out.printf("In save Department");
         return employeeManagementService.saveDepartment(departmentRequestDto);
     }
 
